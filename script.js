@@ -1,13 +1,16 @@
 // Portfolio Website JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY); // ✅ IMPORTANT
+
     // Initialize all functionality
     initNavigation();
     initThemeToggle();
-    initScrollAnimations();
+    initScrollAnimations(); 
     initSkillBars();
     initContactForm();
     initMobileMenu();
 });
+
 
 // Navigation functionality
 function initNavigation() {
@@ -161,14 +164,10 @@ function initContactForm() {
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
 
-    // Initialize EmailJS with your public key
-    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         clearErrors();
 
-        // Validate form inputs
         let isValid = true;
 
         if (!validateName(nameInput.value)) {
@@ -187,7 +186,6 @@ function initContactForm() {
         }
 
         if (isValid) {
-            // Send email using EmailJS
             emailjs.sendForm(
                 EMAILJS_CONFIG.SERVICE_ID,
                 EMAILJS_CONFIG.TEMPLATE_ID,
@@ -204,7 +202,7 @@ function initContactForm() {
         }
     });
 
-    // Realtime validation (optional)
+    // Realtime validation...
     nameInput.addEventListener('blur', () => {
         if (nameInput.value && !validateName(nameInput.value)) {
             showError('name-error', 'Please enter a valid name (at least 2 characters)');
@@ -229,7 +227,6 @@ function initContactForm() {
         }
     });
 
-    // Validation helper functions
     function validateName(name) {
         return name.trim().length >= 2;
     }
@@ -282,12 +279,10 @@ function initContactForm() {
         `;
         document.body.appendChild(successDiv);
 
-        // Trigger fade-in
         requestAnimationFrame(() => {
             successDiv.style.opacity = 1;
         });
 
-        // Auto-remove after 3 seconds
         setTimeout(() => {
             successDiv.style.opacity = 0;
             setTimeout(() => {
