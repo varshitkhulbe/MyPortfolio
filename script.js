@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initNavigation();
     initThemeToggle();
-    initScrollAnimations(); 
+    // initScrollAnimations(); 
     initSkillBars();
     initContactForm();
-    initMobileMenu();
+    // initMobileMenu();
 });
 
 
